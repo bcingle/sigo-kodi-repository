@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="xbmc.repo.sigo" name="Sigo's Add-on Repository" version="1.0" provider-name="Sigo">
+    <extension point="xbmc.addon.repository" name="Sigo's Add-on Repository">
+        <info>http://serve.lilingles.com/kodi/sigo-repo/addons.xml</info>
+        <checksum>http://serve.lilingles.com/kodi/sigo-repo/addons.xml.md5</checksum>
+        <datadir zip="true">http://serve.lilingles.com/kodi/sigo-repo/dist</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Sigo's Add-on Repository</summary>
+        <description>Sigo's Add-ons, including GuideboxKodi</description>
+        <disclaimer></disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon> 

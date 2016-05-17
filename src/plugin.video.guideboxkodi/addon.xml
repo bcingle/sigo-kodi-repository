@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.guideboxkodi"
+	name="Guidebox Kodi"
+	version="0.6"
+	provider-name="sigo">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="plugin.program.chrome.launcher" version="1.0.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Guidebox navigator for Kodi</summary>
+    <description lang="en_US">Guidebox is a service that scrapes many streaming video 
+    sources for streaming links, and provides them in a navigable API. This plugin 
+    provides an interface to the API. Fanart is provided by TheMovieDB.  Please help 
+    by submitting your own artwork!
+    
+    Currently, I (the developer) provide my own Guidebox API Key.  Guidebox limits the
+    number of fetches per minute and per month. If possible, please request your own 
+    Guidebox API Key and enter it in the settings to avoid contributing to the fetch
+    caps.  If Guidebox ever asks me to pay, I will rescind my API key and ask that 
+    users provide their own.  Thanks for playing nice!
+    
+    Dependencies:
+    Chrome Launcher - http://forum.kodi.tv/showthread.php?tid=170965</description>
+    <platform>all</platform>
+    <!-- forum>http://forum.kodi.tv/showthread.php?tid=254203</forum -->
+    <source>http://serve.lilingles.com/kodi/sigo-repo/dist/plugin.video.guideboxkodi.zip</source>
+    <website>http://ben.lilingles.com/guidebox</website>
+    <email>ben@lilingles.com</email>
+    <language></language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+  </extension>
+</addon>
