@@ -1,9 +1,10 @@
 #!/bin/sh
 
-PACKAGE=repository.sigo
+PACKAGE=xbmc.repo.sigo
 
-zip="$PWD/$PACKAGE.zip"
+zip="$PWD/dist/$PACKAGE.zip"
 
+python ./generator.py
 
 if [[ -f "$zip" ]]
 then
@@ -11,5 +12,5 @@ then
     rm -f "$zip"
 fi
 
-zip -v "$zip" "addon.xml"
+zip -r "$zip" "$PACKAGE"/addon.xml "$PACKAGE"/icon.png "$PACKAGE"/fanart.jpg
 
