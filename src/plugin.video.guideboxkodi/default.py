@@ -54,7 +54,7 @@ favoriteShows = addonHelper.get_user_data("saved_shows")
 if favoriteShows is None:
     favoriteShows = []
     addonHelper.set_user_data("saved_shows", favoriteShows)
-favoriteEpisodes = addonHelper.get_user_data("saved-episodes")
+favoriteEpisodes = addonHelper.get_user_data("saved_episodes")
 if favoriteEpisodes is None:
     favoriteEpisodes = []
     addonHelper.set_user_data("saved_episodes", favoriteEpisodes)
@@ -177,8 +177,8 @@ def build_favorite_shows_folders():
         return
     print "Attempting to multithread the obtaining of show info"
     shows = guidebox.get_extended_show_info_batch(favoriteShows)
-    for showId in shows:
-        add_show_folder(showId)
+    for show in shows:
+        add_show_folder(show["id"])
 
 def add_show_folder(showId):
     show = guidebox.get_extended_show_info(showId)
@@ -330,7 +330,7 @@ def add_episode_folder(show, episode):
     listInfo["mediatype"] = "episode"
     if "duration" in episode:
         listInfo["duration"] = episode["duration"]
-    if showId in favoriteShows:
+    if episode["id"] in favoriteEpisodes:
         contextMenu = [("Remove from Favorite Episodes", "RunPlugin(" + addonHelper.build_url({"action": "removeFavoriteEpisode", "episodeId": episode["id"]}) + ")")]
     else:
         contextMenu = [("Add to Favorites Episodes", "RunPlugin(" + addonHelper.build_url({"action": "addFavoriteEpisode", "episodeId": episode["id"]}) + ")")]
@@ -590,6 +590,8 @@ actions = {
 if sourceType and selectedMovie:
     # display a list of streaming links for a movie
     build_movie_links(selectedMovie, sourceType)
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
     pass
 
 elif selectedMovie:
@@ -598,10 +600,14 @@ elif selectedMovie:
         build_movie_source_type_folders(selectedMovie)
     else:
         build_movie_links(selectedMovie, onlySourceType)
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
 
 elif sourceType and selectedEpisode:
     # display a list of streaming links for a source
     build_episode_links(selectedEpisode, sourceType)
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
 
 elif selectedEpisode:
     # display a list of streaming sources for an episode
@@ -609,23 +615,31 @@ elif selectedEpisode:
         build_episode_source_type_folders(selectedEpisode)
     else:
         build_episode_links(selectedEpisode, onlySourceType)
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
 
 elif selectedSeason and selectedShow:
     # if season is selected, show must also be selected
     # display the episodes for a season
     build_episode_folders(selectedShow, selectedSeason)
-#    addonHelper.set_view_mode("508")
+    #addonHelper.set_view_mode("508")
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
     pass
 
 elif selectedShow:
     # display the seasons for a show
     build_season_folders(selectedShow)
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
     pass
 
 elif selectedChannel:
     # display the shows for a channel
     build_show_folders(selectedChannel)
     addonHelper.set_view_mode("508")
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
     pass
 
 elif selectedFolder:
@@ -639,14 +653,19 @@ elif selectedFolder:
         for folderName in folder["subfolders"]:
             subfolder = folders[folderName]
             addonHelper.add_folder(subfolder["label"], path={"folder": folderName}, artwork=subfolder["art"])
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
     pass
 elif action and action in actions:
     print "Executing action " + action
     actions[action]()
+    #addonHelper.refresh_current_path()
 else:
     # show the root folder
     load_root_folders()
+    addonHelper.end()
+    addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
 
-addonHelper.end()
-addonHelper.set_user_data("guidebox-cache", guidebox.get_cache())
+
+
 

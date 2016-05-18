@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
+<addon id="xbmc.repo.sigo" name="Sigo's Add-on Repository" version="1.0" provider-name="Sigo">
+    <extension point="xbmc.addon.repository" name="Sigo's Add-on Repository">
+        <info>http://serve.lilingles.com/kodi/sigo-repo/addons.xml</info>
+        <checksum>http://serve.lilingles.com/kodi/sigo-repo/addons.xml.md5</checksum>
+        <datadir zip="true">http://serve.lilingles.com/kodi/sigo-repo/dist</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Sigo's Add-on Repository</summary>
+        <description>Sigo's Add-ons, including GuideboxKodi</description>
+        <disclaimer></disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
+
+<addon id="plugin.program.chrome.launcher" name="Chrome Launcher" version="1.1.5" provider-name="alelec (AddonScriptorDE)">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.pydevd" version="2.1.0" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Launch websites via Chrome in Kiosk-mode</summary>
+        <language></language>
+        <description lang="en">Launch websites via Chrome in Kiosk-mode</description>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <source>https://github.com/AddonScriptorDE/plugin.program.chrome.launcher</source>
+        <forum>http://forum.xbmc.org/showthread.php?tid=170965</forum>
+        <email>AddonScriptorDE at yahoo dot de</email>
+        <website></website>
+    </extension>
+</addon>
+
 <addon id="plugin.video.guideboxkodi"
 	name="Guidebox Kodi"
-	version="0.6"
+	version="0.1"
 	provider-name="sigo">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -13,7 +48,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Guidebox navigator for Kodi</summary>
-    <description lang="en_US">Guidebox is a service that scrapes many streaming video
+    <description lang="en">Guidebox is a service that scrapes many streaming video
     sources for streaming links, and provides them in a navigable API. This plugin
     provides an interface to the API. Fanart is provided by TheMovieDB.  Please help
     by submitting your own artwork!
